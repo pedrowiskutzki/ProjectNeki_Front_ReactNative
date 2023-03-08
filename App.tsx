@@ -1,5 +1,10 @@
-import Login from "./src/screens/Login";
+import { AuthProvider } from "./src/Context/auth";
+import { Routes } from "./src/Routes/routeTabStack";
 
 export default function App() {
-  return <Login />;
+  return (
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
+  );
 }
