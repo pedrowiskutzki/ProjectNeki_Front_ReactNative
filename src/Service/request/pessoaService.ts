@@ -17,13 +17,9 @@ const createLogin = (data) => {
   return api.post("pessoa/login", data);
 };
 
-const remove = (id) => {
-  return api.delete(`pessoa/${id}`);
-};
 const pessoaService = {
   get,
   create,
-  remove,
   createLogin,
 };
 export default pessoaService;

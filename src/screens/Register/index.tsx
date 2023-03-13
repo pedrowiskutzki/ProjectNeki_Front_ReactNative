@@ -1,5 +1,14 @@
+import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  StatusBar,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Spacer } from "../../Components/spacer";
 import pessoaService, {
   CreateParams,
@@ -12,6 +21,15 @@ export function Register({ navigation }) {
   const [senhaConfirma, setSenhaConfirma] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(true);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(true);
+
+  function toggleShowPassword() {
+    setShowPassword(!showPassword);
+  }
+  function toggleShowConfirmPassword() {
+    setShowConfirmPassword(!showConfirmPassword);
+  }
 
   function handleSubmit() {
     if (
@@ -48,31 +66,101 @@ export function Register({ navigation }) {
 
   return (
     <>
+      <StatusBar
+        barStyle="light-content"
+        hidden={false}
+        backgroundColor="black"
+      />
       <View style={styles.container}>
-        <Text>Cadastro</Text>
-        <Text>Login</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setLogin(text)}
-        />
+        <View style={styles.viewLogo}>
+          <Image
+            source={require("../../Assets/LogoNekiWhite.png")}
+            style={styles.logo}
+          />
+        </View>
+        <Spacer x={5} y={30} />
+        <View style={styles.divPassword}>
+          <View style={styles.divButtonPassword}>
+            <TouchableOpacity style={{ alignItems: "center" }}>
+              <SimpleLineIcons
+                style={styles.eyeIcon}
+                name={"user"}
+                size={24}
+                color="white"
+              />
+            </TouchableOpacity>
+          </View>
+          <TextInput
+            style={styles.input}
+            placeholder="Login"
+            placeholderTextColor={styles.placeholder.color}
+            onChangeText={(text) => setLogin(text)}
+          />
+        </View>
         <Spacer x={5} y={15} />
-        <Text>Senha</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setPassword(text)}
-          secureTextEntry={secure}
-        />
+        <View style={styles.divPassword}>
+          <View style={styles.divButtonPassword}>
+            <TouchableOpacity
+              style={{ alignItems: "center" }}
+              onPress={toggleShowPassword}
+            >
+              <AntDesign
+                style={styles.eyeIcon}
+                name={showPassword ? "lock1" : "unlock"}
+                size={24}
+                color="white"
+              />
+            </TouchableOpacity>
+          </View>
+          <TextInput
+            style={styles.input}
+            placeholder="Senha"
+            placeholderTextColor={styles.placeholder.color}
+            onChangeText={(text) => setPassword(text)}
+            secureTextEntry={showPassword}
+          />
+        </View>
         <Spacer x={5} y={15} />
-        <Text>Senha</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => setSenhaConfirma(text)}
-          secureTextEntry={secureConfirm}
-        />
+        <View style={styles.divPassword}>
+          <View style={styles.divButtonPassword}>
+            <TouchableOpacity
+              style={{ alignItems: "center" }}
+              onPress={toggleShowConfirmPassword}
+            >
+              <AntDesign
+                style={styles.eyeIcon}
+                name={showConfirmPassword ? "lock1" : "unlock"}
+                size={24}
+                color="white"
+              />
+            </TouchableOpacity>
+          </View>
 
-        <Spacer x={5} y={15} />
+          <TextInput
+            style={styles.input}
+            placeholder="Confirmar Senha"
+            placeholderTextColor={styles.placeholder.color}
+            onChangeText={(text) => setSenhaConfirma(text)}
+            secureTextEntry={showConfirmPassword}
+          />
+        </View>
+
+        <Spacer x={5} y={45} />
         <TouchableOpacity style={styles.LoginButton} onPress={handleSubmit}>
-          <Text>Criar</Text>
+          <LinearGradient
+            colors={["#03A696", "#37ff0093"]}
+            style={{
+              padding: 15,
+              alignItems: "center",
+              borderRadius: 6,
+              width: 190,
+              height: 52,
+            }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+          >
+            <Text style={styles.textLogin}>Cadastrar</Text>
+          </LinearGradient>
         </TouchableOpacity>
       </View>
     </>
