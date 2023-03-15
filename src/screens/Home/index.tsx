@@ -13,7 +13,6 @@ export function Home({ navigation }) {
   const [userId, setUserId] = useState("");
   const [isSelectedModal, setIsSelectedModal] = useState(false);
   const [pessoaSkill, setPessoaSkill] = useState([]);
-  const [removeLoading, setRemoveLoading] = useState(false);
 
   useEffect(() => {
     get(); //Pegar Id do Usuario logado
@@ -21,7 +20,6 @@ export function Home({ navigation }) {
       .getAll()
       .then((res) => {
         setPessoaSkill(res.data);
-        setRemoveLoading(true);
       })
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);

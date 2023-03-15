@@ -1,6 +1,7 @@
 import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LinearGradient } from "expo-linear-gradient";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Image,
   StatusBar,
@@ -9,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { CheckBox } from "react-native-elements";
 import { Spacer } from "../../Components/spacer";
 import { AuthContext } from "../../Context/auth";
 import { styles } from "./styles";
@@ -18,9 +20,34 @@ export function Login({ navigation }) {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(true);
+  const [passwordRemember, setPasswordRemember] = useState(false);
 
   function handleSignIn() {
     signIn(login, password);
+    if (passwordRemember) {
+      AsyncStorage.setItem("rememberedPassword", password);
+      //Se o Valor for False Salva apaga no LocalStorage
+    } else {
+      AsyncStorage.removeItem("rememberedPassword");
+    }
+  }
+
+  useEffect(() => {
+    //Salvar Password no AsyncStorage
+    AsyncStorage.getItem("rememberedPassword").then((storedPassword) => {
+      if (storedPassword) {
+        setPassword(storedPassword);
+        setPasswordRemember(true);
+      }
+    });
+  }, []);
+
+  function handleRememberMe(checked: boolean) {
+    setPasswordRemember(checked);
+    if (!checked) {
+      AsyncStorage.removeItem("rememberedPassword");
+      setPassword("");
+    }
   }
 
   function toggleShowPassword() {
@@ -90,7 +117,13 @@ export function Login({ navigation }) {
           />
         </View>
 
-        <Spacer x={5} y={60} />
+        <Spacer x={5} y={15} />
+        <CheckBox
+          title="Voce deseja salvar sua senha?"
+          onPress={() => handleRememberMe(!passwordRemember)}
+          checked={passwordRemember}
+        />
+        <Spacer x={5} y={50} />
         <TouchableOpacity style={styles.LoginButton} onPress={handleSignIn}>
           <LinearGradient
             colors={["#03A696", "#37ff0093"]}
