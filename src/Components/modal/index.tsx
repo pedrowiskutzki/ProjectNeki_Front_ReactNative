@@ -50,8 +50,8 @@ export const SkillModal = ({
     pessoaSkillService
       .create(postPessoaSkill)
       .then((res) => {
-        console.log(res);
         alert("Skill Salva");
+        onPress();
       })
       .catch((err) => {
         alert("Ocorreu algum erro tente novamente");

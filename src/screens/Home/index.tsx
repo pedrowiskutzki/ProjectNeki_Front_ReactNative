@@ -14,6 +14,41 @@ export function Home({ navigation }) {
   const [isSelectedModal, setIsSelectedModal] = useState(false);
   const [pessoaSkill, setPessoaSkill] = useState([]);
 
+  async function handleUpdate(id, newLevel) {
+    if (newLevel < 0 || newLevel > 10) {
+      throw new Error("O novo nível de conhecimento deve estar entre 0 e 10.");
+    } else {
+      const dado = {
+        knowledge_level: newLevel,
+      };
+      await pessoaSkillService
+        .update(id, dado)
+        .then((response) => {
+          console.log(response);
+          const updatedSkills = pessoaSkill.map((skill) => {
+            if (skill.id === id) {
+              return { ...skill, knowledge_level: newLevel };
+            } else {
+              return skill;
+            }
+          });
+          setPessoaSkill(updatedSkills);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
+
+  async function updateSkills() {
+    try {
+      const res = await pessoaSkillService.getAll();
+      setPessoaSkill(res.data);
+    } catch (err) {
+      console.error("Ops! Ocorreu um erro", err);
+    }
+  }
+
   useEffect(() => {
     get(); //Pegar Id do Usuario logado
     pessoaSkillService
@@ -56,7 +91,7 @@ export function Home({ navigation }) {
           <SkillModal
             isSelectedModal={isSelectedModal}
             setIsSelectedModal={setIsSelectedModal}
-            onPress={() => console.log("aaa")}
+            onPress={() => updateSkills()}
           />
           <TouchableOpacity onPress={signOut} style={styles.buttonExit}>
             <Text>Sair</Text>
@@ -89,6 +124,7 @@ export function Home({ navigation }) {
           userId={userId}
           skills={pessoaSkill}
           onRemoveSkill={handleDeleteEventoEspecial}
+          onUpdatePessoaSkill={handleUpdate}
         />
       </View>
     </>

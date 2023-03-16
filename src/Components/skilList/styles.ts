@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
   imgCard: {
     width: 80,
     height: 80,
+    marginTop: 5,
   },
   buttonDeletSkill: {
     backgroundColor: "red",
@@ -39,5 +40,32 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
+  },
+  divLevel: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  buttonDecrease: {
+    width: 30,
+    height: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 8,
+    color: "white",
+    backgroundColor: "#D6450D",
+  },
+  buttonIncrease: {
+    width: 30,
+    height: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 8,
+    color: "white",
+    backgroundColor: "#39D121",
+  },
+  titleLevel: {
+    fontSize: 16,
+    marginHorizontal: 10,
+    color: "#17BCD1",
   },
 });
