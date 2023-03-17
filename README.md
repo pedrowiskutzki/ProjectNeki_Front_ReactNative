@@ -41,7 +41,7 @@ To use this application, follow these steps:
 This application implements basic security measures to protect the user's data. It does not allow access to the Home screen without a valid login, and it stores the user's credentials in AsyncStorage only if the "Remember me" checkbox is checked. The application communicates with a server-side API to perform the authentication and data management tasks, and it uses HTTPS protocol to encrypt the data in transit. However, this application is not intended to be used in a production environment without further security enhancements.
 
 ## 👏 Credits
-This project was created by [your name] as a [company/school/personal] project. It uses the following technologies:
+This project was created by Pedro Wiskutzki as a Neki project. It uses the following technologies:
 
 React Native [https://reactnative.dev/]
 <p align="center">
