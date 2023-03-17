@@ -43,7 +43,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     loadStorageData();
   }, []);
-
+  //Login
   async function signIn(login: string, senhaLogin: string) {
     try {
       const response = await api.post("/pessoa/login", {
@@ -66,7 +66,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       alert("login ou senha invalidos");
     }
   }
-
+  //Sair
   async function signOut() {
     setIsAuthenticated(false);
     setUserId("");

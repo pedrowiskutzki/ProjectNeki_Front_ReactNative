@@ -26,7 +26,7 @@ export const SkillModal = ({
   const closeModal = () => {
     setIsSelectedModal(false);
   };
-
+  // Get All de Skill
   useEffect(() => {
     skillService
       .getAll()
@@ -37,7 +37,7 @@ export const SkillModal = ({
         console.error("ops! ocorreu um erro" + err);
       });
   }, []);
-
+  // post Skill
   const handleSubmit = async (event, idSkill) => {
     event.preventDefault();
     const id = await AsyncStorage.getItem("@id");

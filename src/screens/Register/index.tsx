@@ -30,7 +30,7 @@ export function Register({ navigation }) {
   function toggleShowConfirmPassword() {
     setShowConfirmPassword(!showConfirmPassword);
   }
-
+  //Post User
   function handleSubmit() {
     if (
       login !== null &&

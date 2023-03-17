@@ -11,7 +11,7 @@ import { Register } from "../screens/Register";
 function RouteTabStack() {
   const Stack = createStackNavigator();
   const { isAuthenticated } = useContext(AuthContext);
-
+  //Nao Authenticado
   if (!isAuthenticated) {
     return (
       <>
@@ -30,7 +30,7 @@ function RouteTabStack() {
       </>
     );
   }
-
+  //Authenticado
   return (
     <>
       <Stack.Navigator>

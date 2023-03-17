@@ -21,7 +21,7 @@ export function Login({ navigation }) {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(true);
   const [passwordRemember, setPasswordRemember] = useState(false);
-
+  //Login
   function handleSignIn() {
     signIn(login, password);
     if (passwordRemember) {
