@@ -10,6 +10,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import Container, { Toast } from "toastify-react-native";
 import pessoaSkillService, {
   PostPessoaSkill,
 } from "../../Service/request/pessoaSkillService";
@@ -50,11 +51,11 @@ export const SkillModal = ({
     pessoaSkillService
       .create(postPessoaSkill)
       .then((res) => {
-        alert("Skill Salva");
+        Toast.success("Skill Salva");
         onPress();
       })
       .catch((err) => {
-        alert("Ocorreu algum erro tente novamente");
+        Toast.error("Ocorreu algum erro tente novamente");
       });
   };
 
@@ -67,6 +68,13 @@ export const SkillModal = ({
         closeModal();
       }}
     >
+      <Container
+        theme="dark"
+        positionValue={28}
+        duration={1400}
+        position="top"
+        width={350}
+      />
       <TouchableWithoutFeedback onPress={() => closeModal()}>
         <View style={styles.modalOverlay} />
       </TouchableWithoutFeedback>

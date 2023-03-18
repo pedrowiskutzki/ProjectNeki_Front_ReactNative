@@ -11,6 +11,7 @@ import {
   View,
 } from "react-native";
 import { CheckBox } from "react-native-elements";
+import Container from "toastify-react-native";
 import { Spacer } from "../../Components/spacer";
 import { AuthContext } from "../../Context/auth";
 import { styles } from "./styles";
@@ -60,6 +61,13 @@ export function Login({ navigation }) {
         barStyle="light-content"
         hidden={false}
         backgroundColor="black"
+      />
+      <Container
+        theme="dark"
+        positionValue={28}
+        duration={1400}
+        position="top"
+        width={350}
       />
       <View style={styles.container}>
         <View style={styles.viewLogo}>

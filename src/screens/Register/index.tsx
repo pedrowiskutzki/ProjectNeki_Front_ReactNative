@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Container, { Toast } from "toastify-react-native";
 import { Spacer } from "../../Components/spacer";
 import pessoaService, {
   CreateParams,
@@ -50,17 +51,17 @@ export function Register({ navigation }) {
           .create(pessoa)
           .then((res) => {
             console.log(res);
-            alert("Usuario cadastrado com sucesso!");
+            Toast.success("Usuario cadastrado com sucesso!");
             navigation.navigate("Login");
           })
           .catch((err) => {
-            alert("Alguma coisa deu errado!");
+            Toast.error("Alguma coisa deu errado!");
           });
       } else {
-        alert("As senhas não estão iguais");
+        Toast.error("As senhas não estão iguais");
       }
     } else {
-      alert("Preencha todos os Campos");
+      Toast.error("Preencha todos os Campos");
     }
   }
 
@@ -70,6 +71,13 @@ export function Register({ navigation }) {
         barStyle="light-content"
         hidden={false}
         backgroundColor="black"
+      />
+      <Container
+        theme="dark"
+        positionValue={28}
+        duration={1400}
+        position="top"
+        width={350}
       />
       <View style={styles.container}>
         <View style={styles.viewLogo}>

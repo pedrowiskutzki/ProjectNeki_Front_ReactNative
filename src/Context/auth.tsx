@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { Toast } from "toastify-react-native";
 import { api } from "../Service/api/api";
 
 interface AuthContextData {
@@ -61,9 +62,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       await AsyncStorage.setItem("@authenticated", "true");
       await AsyncStorage.setItem("@id", JSON.stringify(pessoa.id));
       setIsAuthenticated(true);
-      alert("sucesso");
+      Toast.success("Sucesso, Bem Vindo!");
     } catch (error) {
-      alert("login ou senha invalidos");
+      Toast.error("Login ou Senha invalidos");
     }
   }
   //Sair

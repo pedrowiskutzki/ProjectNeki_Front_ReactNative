@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Container, { Toast } from "toastify-react-native";
 import { SkillModal } from "../../Components/modal";
 import { SkillList } from "../../Components/skilList";
 import { AuthContext } from "../../Context/auth";
@@ -73,7 +74,7 @@ export function Home({ navigation }) {
     pessoaSkillService
       .remove(id)
       .then((response) => {
-        alert("Skill Deletada");
+        Toast.success("Skill Deletada");
         const newSkills = pessoaSkill.filter((skill) => skill.id !== id);
         setPessoaSkill(newSkills);
       })
@@ -93,6 +94,13 @@ export function Home({ navigation }) {
         barStyle="light-content"
         hidden={false}
         backgroundColor="black"
+      />
+      <Container
+        theme="dark"
+        positionValue={28}
+        duration={1400}
+        position="top"
+        width={350}
       />
       <View style={styles.container}>
         <View style={styles.menu}>
